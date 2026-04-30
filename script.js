@@ -59,7 +59,7 @@ function displayLibraryBooks(library) {
         bookId.setAttribute("id", "book-id");
         bookId.textContent = book.id;
 
-        let bookTitle = document.createElement("p");
+        let bookTitle = document.createElement("h2");
         bookTitle.setAttribute("id", "book-title");
         bookTitle.textContent = book.title;
 
