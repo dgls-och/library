@@ -28,4 +28,28 @@ addBookToLibrary(
     , true
 );
 
+addBookToLibrary(
+    'The DaVincci Code'
+    , 'Dan Brown'
+    , 'N/A'
+    , 'N/A'
+    , 300
+    , true
+);
+
+addBookToLibrary(
+    'The Book of Revelation'
+    , 'The Holy Spirit'
+    , 'John, the apostle'
+    , 'A. D. 90'
+    , NaN
+    , true
+);
+
 console.table(myLibrary);
+
+function displayLibraryBooks(library) {
+    myLibrary.forEach((book) => console.log(book));
+}
+
+displayLibraryBooks(myLibrary);
