@@ -46,23 +46,23 @@ function displayLibraryBooks(library) {
 
         let bookAuthor = document.createElement("p");
         bookAuthor.setAttribute("id", "book-author");
-        bookAuthor.textContent = book.author;
+        bookAuthor.textContent = `Author: ${book.author}`;
 
         let bookPublisher = document.createElement("p");
         bookPublisher.setAttribute("id", "book-publisher");
-        bookPublisher.textContent = book.publisher;
+        bookPublisher.textContent = `Publisher: ${book.publisher}`;
 
         let dateOfPublication = document.createElement("p");
         dateOfPublication.setAttribute("id", "date-of-publication");
-        dateOfPublication.textContent = book.dateOfPublication;
+        dateOfPublication.textContent = `Publication Year: ${book.dateOfPublication}`;
 
         let bookPages = document.createElement("p");
         bookPages.setAttribute("id", "book-pages");
-        bookPages.textContent = book.pages;
+        bookPages.textContent = `Pages: ${book.pages}`;
 
         let readStatus = document.createElement("p");
         readStatus.setAttribute("id", "read-status");
-        readStatus.textContent = (book.read == true) ? "Read" : "Yet to read";
+        readStatus.textContent = `Read book: ${(book.read == true) ? "Yes" : "Not yet"}`;
 
         let bookRemovingBttn = document.createElement("button");
         bookRemovingBttn.setAttribute("data-id", book.id);
