@@ -1,4 +1,6 @@
-const display = document.querySelector(".wrapper");
+const display = document.querySelector(".books-display");
+const inputs = document.querySelectorAll("form input");
+const submitBttn = document.querySelector("form button");
 
 const myLibrary = [];
 
@@ -20,35 +22,6 @@ function addBookToLibrary(title, author, publisher, dateOfPublication, pages, re
     let newBook = new Book(title, author, publisher, dateOfPublication, pages, read);
     myLibrary.push(newBook);
 }
-
-addBookToLibrary(
-    'A Man and His Mission'
-    , 'Adrian Cluade Gild'
-    , 'Gospel Advocate'
-    , '2006'
-    , 300
-    , true
-);
-
-addBookToLibrary(
-    'The DaVincci Code'
-    , 'Dan Brown'
-    , 'N/A'
-    , 'N/A'
-    , 300
-    , true
-);
-
-addBookToLibrary(
-    'The Book of Revelation'
-    , 'The Holy Spirit'
-    , 'John, the apostle'
-    , 'A. D. 90'
-    , NaN
-    , false
-);
-
-console.table(myLibrary);
 
 function displayLibraryBooks(library) {
     myLibrary.forEach(book => {
@@ -95,3 +68,44 @@ function displayLibraryBooks(library) {
 }
 
 displayLibraryBooks(myLibrary);
+
+submitBttn.addEventListener('click', e => {
+    e.preventDefault();
+    inputs.forEach(input => {
+        let title;
+        let author;
+        let publisher;
+        let dateOfPublication;
+        let pages;
+        let read;
+        switch (true) {
+            case input.id == "title":
+                title = input.value;
+                input.value = "";
+                break;
+            case input.id == "author":
+                author = input.value;
+                input.value = "";
+                break;
+            case input.id == "publisher":
+                publisher = input.value;
+                input.value = "";
+                break;
+            case input.id == "year-of-publication":
+                dateOfPublication = input.value;
+                input.value = "";
+                break;
+            case input.id == "pages":
+                pages = input.value;
+                input.value = "";
+                break;
+            case input.id == "read-status":
+                read = input.value == "on" ? true : false;
+                input.checked = false;
+        }
+        addBookToLibrary(title, author, publisher, dateOfPublication, pages, read);
+        display.textContent = "";
+        displayLibraryBooks(myLibrary);
+        document.querySelector("dialog").close();
+    });
+});
