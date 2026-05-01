@@ -16,14 +16,11 @@ html {
 }
 
 .book {
-    border: 1px solid;
     border-radius: 1.3rem;
+    width: fit-content;
     margin-bottom: 3rem;
     padding: 3rem;
     font-size: max(1.5vw, 1.5rem);
-}
-
-.book:hover {
     box-shadow: 3px 3px 3px;
 }
 
