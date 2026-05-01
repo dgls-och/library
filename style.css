@@ -13,6 +13,18 @@ html {
     font-size: 10px;
 }
 
+.delete-bttn {
+    color: #df0000;
+    background-color: #df000066;
+    display: block;
+    width: fit-content;
+    margin: 2rem 0 0 max(calc(80% - 3rem), calc(90% - 3rem));
+    padding: 0.6rem 1rem;
+    border: 1px solid;
+    font-size: 1.1rem;
+    border-radius: 0.8rem;
+}
+
 .wrapper {
     width: min(80%, 500px);
     margin: auto;

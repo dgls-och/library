@@ -56,6 +56,10 @@ function displayLibraryBooks(library) {
         readStatus.setAttribute("id", "read-status");
         readStatus.textContent = (book.read == true) ? "Read" : "Yet to read";
 
+        let bookRemovingBttn = document.createElement("button");
+        bookRemovingBttn.innerText = "Delete";
+        bookRemovingBttn.classList.add("delete-bttn");
+
         bookCard.appendChild(bookId);
         bookCard.appendChild(bookTitle);
         bookCard.appendChild(bookAuthor);
@@ -63,6 +67,7 @@ function displayLibraryBooks(library) {
         bookCard.appendChild(dateOfPublication);
         bookCard.appendChild(bookPages);
         bookCard.appendChild(readStatus);
+        bookCard.appendChild(bookRemovingBttn);
         display.appendChild(bookCard);
     });
 }
