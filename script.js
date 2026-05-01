@@ -71,13 +71,13 @@ displayLibraryBooks(myLibrary);
 
 submitBttn.addEventListener('click', e => {
     e.preventDefault();
+    let title;
+    let author;
+    let publisher;
+    let dateOfPublication;
+    let pages;
+    let read;
     inputs.forEach(input => {
-        let title;
-        let author;
-        let publisher;
-        let dateOfPublication;
-        let pages;
-        let read;
         switch (true) {
             case input.id == "title":
                 title = input.value;
@@ -100,12 +100,12 @@ submitBttn.addEventListener('click', e => {
                 input.value = "";
                 break;
             case input.id == "read-status":
-                read = input.value == "on" ? true : false;
+                read = input.checked;
                 input.checked = false;
         }
-        addBookToLibrary(title, author, publisher, dateOfPublication, pages, read);
-        display.textContent = "";
-        displayLibraryBooks(myLibrary);
-        document.querySelector("dialog").close();
     });
+    addBookToLibrary(title, author, publisher, dateOfPublication, pages, read);
+    display.textContent = "";
+    displayLibraryBooks(myLibrary);
+    document.querySelector("dialog").close();
 });
