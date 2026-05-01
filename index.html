@@ -3,40 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Libtracker</title>
+    <title>Libtrakr</title>
     <link rel="stylesheet" href="./style.css">
 </head>
 <body>
     <div class="wrapper">
+        <h1>Libtrakr</h1>
         <button id="open-modal" command="show-modal" commandfor="add-book">Add <br>book</button>
         <dialog id="add-book">
             <form>
                 <p>All fields are required</p>
                 <label for="title">
                     Title:
-                    <input type="text" id="title" required>
+                    <input type="text" id="title">
                 </label>
                 <label for="author">
                     Author:
-                    <input type="text" id="author" required>
+                    <input type="text" id="author">
                 </label>
                 <label for="publisher">
                     Publisher:
-                    <input type="text" id="publisher" required>
+                    <input type="text" id="publisher">
                 </label>
                 <label for="year-of-publication">
                     Year of Publication:
-                    <input type="number" id="year-of-publication"  required>
+                    <input type="number" id="year-of-publication">
                 </label>
                 <label for="pages">
                     Pages:
-                    <input type="number" id="pages" required>
+                    <input type="number" id="pages">
                 </label>
                 <label for="read-status">
                     Have you read this book?
-                    <input type="radio" id="read-status" required>
+                    <input type="radio" id="read-status">
                 </label>
-                <button type="button" command="close" commandfor="add-book">
+                <button type="button">
                     Add book
                 </button>
             </form>
