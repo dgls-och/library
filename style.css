@@ -13,16 +13,29 @@ html {
     font-size: 10px;
 }
 
-.delete-bttn {
-    color: #df0000;
-    background-color: #df000066;
-    display: block;
+.book-bttn-wrapper {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 2rem;
+    gap: 1rem;
+}
+
+.bttn {
     width: fit-content;
-    margin: 2rem 0 0 max(calc(80% - 3rem), calc(90% - 3rem));
     padding: 0.6rem 1rem;
     border: 1px solid;
     font-size: 1.1rem;
     border-radius: 0.8rem;
+}
+
+.delete-bttn {
+    color: #df0000;
+    background-color: #df000066;
+}
+
+.toggle-bttn {
+    color: #0000ff;
+    background-color: #0000ff55;
 }
 
 .wrapper {

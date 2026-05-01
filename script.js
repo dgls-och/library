@@ -18,6 +18,14 @@ function Book(title, author, publisher, dateOfPublication, pages, read) {
     this.read = read;
 }
 
+Book.prototype.changeReadStatus = function () {
+    if (this.read == false) {
+        this.read = true;
+    } else {
+        this.read = false;
+    }
+}
+
 function addBookToLibrary(title, author, publisher, dateOfPublication, pages, read) {
     let newBook = new Book(title, author, publisher, dateOfPublication, pages, read);
     myLibrary.push(newBook);
@@ -59,11 +67,25 @@ function displayLibraryBooks(library) {
         let bookRemovingBttn = document.createElement("button");
         bookRemovingBttn.setAttribute("data-id", book.id);
         bookRemovingBttn.innerText = "Delete";
-        bookRemovingBttn.classList.add("delete-bttn");
+        bookRemovingBttn.classList.add("delete-bttn", "bttn");
         bookRemovingBttn.addEventListener('click', e => {
             e.preventDefault();
             removeBook(bookRemovingBttn);
         });
+
+        let readStatusBttn = document.createElement("button");
+        readStatusBttn.dataset.id = book.id;
+        readStatusBttn.innerText = "Toggle status";
+        readStatusBttn.classList.add("toggle-bttn", "bttn")
+        readStatusBttn.addEventListener('click', e => {
+            e.preventDefault();
+            toggleReadStatus(readStatusBttn);
+        });
+
+        const bookBttnWrapper = document.createElement("div");
+        bookBttnWrapper.classList.add("book-bttn-wrapper");
+        bookBttnWrapper.appendChild(bookRemovingBttn);
+        bookBttnWrapper.appendChild(readStatusBttn);
 
         bookCard.appendChild(bookId);
         bookCard.appendChild(bookTitle);
@@ -72,7 +94,7 @@ function displayLibraryBooks(library) {
         bookCard.appendChild(dateOfPublication);
         bookCard.appendChild(bookPages);
         bookCard.appendChild(readStatus);
-        bookCard.appendChild(bookRemovingBttn);
+        bookCard.appendChild(bookBttnWrapper);
         display.appendChild(bookCard);
     });
 }
@@ -127,4 +149,14 @@ function removeBook(button) {
     }
     display.textContent = "";
     displayLibraryBooks(myLibrary);
+}
+
+function toggleReadStatus(button) {
+    myLibrary.forEach(book => {
+        if (book.id == button.dataset.id) {
+            book.changeReadStatus();
+            display.textContent = "";
+            displayLibraryBooks(myLibrary);
+        }
+    });
 }
