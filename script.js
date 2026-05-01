@@ -62,9 +62,7 @@ function displayLibraryBooks(library) {
         bookRemovingBttn.classList.add("delete-bttn");
         bookRemovingBttn.addEventListener('click', e => {
             e.preventDefault();
-            myLibrary.splice(myLibrary.indexOf(bookRemovingBttn.dataId), 1);
-            display.textContent = "";
-            displayLibraryBooks(myLibrary);
+            removeBook(bookRemovingBttn);
         });
 
         bookCard.appendChild(bookId);
@@ -121,3 +119,12 @@ submitBttn.addEventListener('click', e => {
     displayLibraryBooks(myLibrary);
     document.querySelector("dialog").close();
 });
+
+function removeBook(button) {
+    const targetIndex = myLibrary.findIndex(book => book.id == button.dataset.id);
+    if (targetIndex !== -1) {
+        myLibrary.splice(targetIndex, 1);
+    }
+    display.textContent = "";
+    displayLibraryBooks(myLibrary);
+}
