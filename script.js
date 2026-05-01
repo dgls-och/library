@@ -57,8 +57,15 @@ function displayLibraryBooks(library) {
         readStatus.textContent = (book.read == true) ? "Read" : "Yet to read";
 
         let bookRemovingBttn = document.createElement("button");
+        bookRemovingBttn.setAttribute("data-id", book.id);
         bookRemovingBttn.innerText = "Delete";
         bookRemovingBttn.classList.add("delete-bttn");
+        bookRemovingBttn.addEventListener('click', e => {
+            e.preventDefault();
+            myLibrary.splice(myLibrary.indexOf(bookRemovingBttn.dataId), 1);
+            display.textContent = "";
+            displayLibraryBooks(myLibrary);
+        });
 
         bookCard.appendChild(bookId);
         bookCard.appendChild(bookTitle);
