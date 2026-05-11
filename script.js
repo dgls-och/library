@@ -18,7 +18,28 @@ const library = (function () {
         myLibrary.push(newBook);
     };
 
-    return { addBookToLibrary, getLibrary };
+    const removeBook = function (button) {
+        const targetIndex = myLibrary.findIndex(book => {
+            book.id == button.dataset.id
+        });
+        if (targetIndex !== -1) {
+            myLibrary.splice(targetIndex, 1);
+        }
+        display.textContent = "";
+        displayLibraryBooks(myLibrary);
+    }
+
+    const toggleReadStatus = function (button) {
+        myLibrary.forEach(book => {
+            if (book.id == button.dataset.id) {
+                book.changeReadStatus();
+                display.textContent = "";
+                displayLibraryBooks(myLibrary);
+            }
+        });
+    }
+
+    return { addBookToLibrary, getLibrary, removeBook, toggleReadStatus };
 })();
 
 class Book {
@@ -154,21 +175,3 @@ submitBttn.addEventListener('click', e => {
     document.querySelector("dialog").close();
 });
 
-function removeBook(button) {
-    const targetIndex = myLibrary.findIndex(book => book.id == button.dataset.id);
-    if (targetIndex !== -1) {
-        myLibrary.splice(targetIndex, 1);
-    }
-    display.textContent = "";
-    displayLibraryBooks(myLibrary);
-}
-
-function toggleReadStatus(button) {
-    myLibrary.forEach(book => {
-        if (book.id == button.dataset.id) {
-            book.changeReadStatus();
-            display.textContent = "";
-            displayLibraryBooks(myLibrary);
-        }
-    });
-}
