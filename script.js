@@ -2,7 +2,24 @@ const display = document.querySelector(".books-display");
 const inputs = document.querySelectorAll("form input");
 const submitBttn = document.querySelector("form button");
 
-const myLibrary = [];
+const library = (function () {
+    const myLibrary = [];
+
+    const getLibrary = function () {
+        return myLibrary;
+    };
+
+    const addBookToLibrary = function (
+        title, author, publisher
+        , dateOfPublication, pages, read
+    ) {
+        let newBook = new Book(title, author, publisher
+            , dateOfPublication, pages, read);
+        myLibrary.push(newBook);
+    };
+
+    return { addBookToLibrary, getLibrary };
+})();
 
 class Book {
     constructor(
@@ -22,12 +39,8 @@ class Book {
     }
 }
 
-function addBookToLibrary(title, author, publisher, dateOfPublication, pages, read) {
-    let newBook = new Book(title, author, publisher, dateOfPublication, pages, read);
-    myLibrary.push(newBook);
-}
-
-function displayLibraryBooks(library) {
+function displayLibraryBooks(theLibrary) {
+    let myLibrary = library.getLibrary();
     myLibrary.forEach(book => {
         let bookCard = document.createElement("div");
         bookCard.setAttribute("class", "book");
@@ -95,7 +108,7 @@ function displayLibraryBooks(library) {
     });
 }
 
-displayLibraryBooks(myLibrary);
+displayLibraryBooks(library.getLibrary());
 
 submitBttn.addEventListener('click', e => {
     e.preventDefault();
@@ -132,9 +145,12 @@ submitBttn.addEventListener('click', e => {
                 input.checked = false;
         }
     });
-    addBookToLibrary(title, author, publisher, dateOfPublication, pages, read);
+    library.addBookToLibrary(
+        title, author, publisher
+        , dateOfPublication, pages, read
+    );
     display.textContent = "";
-    displayLibraryBooks(myLibrary);
+    displayLibraryBooks(library.getLibrary());
     document.querySelector("dialog").close();
 });
 
