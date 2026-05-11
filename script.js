@@ -110,28 +110,28 @@ submitBttn.addEventListener('click', e => {
     let pages;
     let read;
     inputs.forEach(input => {
-        switch (true) {
-            case input.id == "title":
+        switch (input.id) {
+            case "title":
                 title = input.value;
                 input.value = "";
                 break;
-            case input.id == "author":
+            case "author":
                 author = input.value;
                 input.value = "";
                 break;
-            case input.id == "publisher":
+            case "publisher":
                 publisher = input.value;
                 input.value = "";
                 break;
-            case input.id == "year-of-publication":
+            case "year-of-publication":
                 dateOfPublication = input.value;
                 input.value = "";
                 break;
-            case input.id == "pages":
+            case "pages":
                 pages = input.value;
                 input.value = "";
                 break;
-            case input.id == "read-status":
+            case "read-status":
                 read = input.checked;
                 input.checked = false;
         }
