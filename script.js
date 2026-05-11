@@ -4,25 +4,21 @@ const submitBttn = document.querySelector("form button");
 
 const myLibrary = [];
 
-function Book(title, author, publisher, dateOfPublication, pages, read) {
-    if (!new.target) {
-        throw 'Error: the "new" keyword must preceed function';
+class Book {
+    constructor(
+        title, author, publisher, dateOfPublication, pages, read
+    ) {
+        this.id = crypto.randomUUID();
+        this.title = title;
+        this.author = author;
+        this.publisher = publisher;
+        this.dateOfPublication = dateOfPublication;
+        this.pages = pages;
+        this.read = read;
     }
 
-    this.id = crypto.randomUUID();
-    this.title = title;
-    this.author = author;
-    this.publisher = publisher;
-    this.dateOfPublication = dateOfPublication;
-    this.pages = pages;
-    this.read = read;
-}
-
-Book.prototype.changeReadStatus = function () {
-    if (this.read == false) {
-        this.read = true;
-    } else {
-        this.read = false;
+    changeReadStatus() {
+        this.read == false ? this.read = true : this.read = false;
     }
 }
 
