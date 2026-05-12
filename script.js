@@ -9,7 +9,7 @@ const library = (function () {
         return myLibrary;
     };
 
-    const addBookToLibrary = function (
+    const addBook = function (
         title, author, publisher
         , dateOfPublication, pages, read
     ) {
@@ -39,7 +39,7 @@ const library = (function () {
         });
     }
 
-    return { addBookToLibrary, getLibrary, removeBook, toggleReadStatus };
+    return { addBook, getLibrary, removeBook, toggleReadStatus };
 })();
 
 class Book {
@@ -60,7 +60,7 @@ class Book {
     }
 }
 
-function displayLibraryBooks(theLibrary) {
+function displayLibraryBooks() {
     let myLibrary = library.getLibrary();
     myLibrary.forEach(book => {
         let bookCard = document.createElement("div");
@@ -100,7 +100,7 @@ function displayLibraryBooks(theLibrary) {
         bookRemovingBttn.classList.add("delete-bttn", "bttn");
         bookRemovingBttn.addEventListener('click', e => {
             e.preventDefault();
-            removeBook(bookRemovingBttn);
+            library.removeBook(bookRemovingBttn);
         });
 
         let readStatusBttn = document.createElement("button");
@@ -109,7 +109,7 @@ function displayLibraryBooks(theLibrary) {
         readStatusBttn.classList.add("toggle-bttn", "bttn")
         readStatusBttn.addEventListener('click', e => {
             e.preventDefault();
-            toggleReadStatus(readStatusBttn);
+            library.toggleReadStatus(readStatusBttn);
         });
 
         const bookBttnWrapper = document.createElement("div");
@@ -129,7 +129,7 @@ function displayLibraryBooks(theLibrary) {
     });
 }
 
-displayLibraryBooks(library.getLibrary());
+displayLibraryBooks();
 
 submitBttn.addEventListener('click', e => {
     e.preventDefault();
@@ -166,12 +166,12 @@ submitBttn.addEventListener('click', e => {
                 input.checked = false;
         }
     });
-    library.addBookToLibrary(
+    library.addBook(
         title, author, publisher
         , dateOfPublication, pages, read
     );
     display.textContent = "";
-    displayLibraryBooks(library.getLibrary());
+    displayLibraryBooks();
     document.querySelector("dialog").close();
 });
 
