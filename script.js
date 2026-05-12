@@ -19,13 +19,11 @@ const library = (function () {
     };
 
     const removeBook = function (button) {
-        const targetIndex = myLibrary.findIndex(book => {
-            book.id === button.dataset.id;
+        myLibrary.forEach(book => {
+          if (book.id == button.dataset.id) {
+            myLibrary.splice(book.id, 1);
+          }
         });
-        if (targetIndex !== -1) {
-            myLibrary.splice(targetIndex, 1);
-            console.log(true);
-        }
         display.textContent = "";
         displayLibraryBooks();
     }
@@ -36,7 +34,6 @@ const library = (function () {
                 book.changeReadStatus();
                 display.textContent = "";
                 displayLibraryBooks();
-                console.log(true);
             }
         });
     }
