@@ -20,13 +20,14 @@ const library = (function () {
 
     const removeBook = function (button) {
         const targetIndex = myLibrary.findIndex(book => {
-            book.id == button.dataset.id
+            book.id === button.dataset.id;
         });
         if (targetIndex !== -1) {
             myLibrary.splice(targetIndex, 1);
+            console.log(true);
         }
         display.textContent = "";
-        displayLibraryBooks(myLibrary);
+        displayLibraryBooks();
     }
 
     const toggleReadStatus = function (button) {
@@ -34,7 +35,8 @@ const library = (function () {
             if (book.id == button.dataset.id) {
                 book.changeReadStatus();
                 display.textContent = "";
-                displayLibraryBooks(myLibrary);
+                displayLibraryBooks();
+                console.log(true);
             }
         });
     }
@@ -104,7 +106,7 @@ function displayLibraryBooks() {
         });
 
         let readStatusBttn = document.createElement("button");
-        readStatusBttn.dataset.id = book.id;
+        readStatusBttn.setAttribute("data-id", book.id);
         readStatusBttn.innerText = "Toggle status";
         readStatusBttn.classList.add("toggle-bttn", "bttn")
         readStatusBttn.addEventListener('click', e => {
